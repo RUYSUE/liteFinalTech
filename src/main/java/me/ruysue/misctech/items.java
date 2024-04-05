@@ -1,4 +1,4 @@
-package me.ruysue.litefinaltech;
+package me.ruysue.misctech;
 
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

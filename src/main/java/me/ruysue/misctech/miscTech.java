@@ -1,4 +1,4 @@
-package me.ruysue.litefinaltech;
+package me.ruysue.misctech;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class liteFinalTech extends JavaPlugin implements SlimefunAddon {
+public class miscTech extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
