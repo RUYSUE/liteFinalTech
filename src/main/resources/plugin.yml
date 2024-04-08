@@ -1,17 +1,17 @@
 ## CHANGE 更改此处为你的附属名称
-name: liteFinalTech
+name: miscTech
 
 ## CHANGE 更改此处为你的名称
 author: ruysue
 
 ## CHANGE 这是对你插件的介绍
-description: A generic Slimefun4-Addon
+description: 收录了部分其他附属比较好用的东东
 
 ## CHANGE 指向你的 JavaPlugin 主类
-main: me.ruysue.litefinaltech.liteFinalTech
+main: me.ruysue.misctech.miscTech
 
 ## 你可以更改为你的项目仓库地址，或者你的个人网站。你也可以移除此项目。
-website: https://github.com/RUYSUE/liteFinalTech
+website: https://github.com/RUYSUE/miscTech
 
 ## 该值将在构建时被自动替换为pom.xml中定义的版本。
 ## 不要更改此项目。
