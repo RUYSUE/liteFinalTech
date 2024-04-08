@@ -1,5 +1,7 @@
 package me.ruysue.misctech;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -11,10 +13,18 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.*;
 
 
 public class items {
@@ -45,7 +55,7 @@ class InfExpBook extends SlimefunItem {
             new ItemStack(SlimefunItems.MAGIC_LUMP_3),  new ItemStack(Material.BOOK),                       new ItemStack(SlimefunItems.MAGIC_LUMP_3),
             new ItemStack(Material.EXPERIENCE_BOTTLE),  new ItemStack(SlimefunItems.ESSENCE_OF_AFTERLIFE),  new ItemStack(Material.EXPERIENCE_BOTTLE),
     };
-    static InfExpBook ieb = new InfExpBook(groups.lft, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+    static InfExpBook ieb = new InfExpBook(groups.mt_misc, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 }
 
 class RottenFlesh extends SlimefunItem{
@@ -67,18 +77,50 @@ class RottenFlesh extends SlimefunItem{
             null,new ItemStack(Material.ROTTEN_FLESH),  null,
             null,new ItemStack(Material.FIRE_CHARGE),   null,
     };
-    static RottenFlesh flesh = new RottenFlesh(groups.lft, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+    static RottenFlesh flesh = new RottenFlesh(groups.mt_misc, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 }
 
 class mythicSword extends SlimefunItem{
     public mythicSword(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
-    static SlimefunItemStack stack = new SlimefunItemStack("MYTHIC_SWORD", Material.WOODEN_SWORD, "&8&l无", "&kashdosgnk");
+    public void preRegister(){
+        sword.addMeta();
+    }
+    private void addMeta(){
+        ItemMeta meta = this.getItem().getItemMeta();
+
+        meta.setUnbreakable(true);
+
+        meta.addEnchant(Enchantment.LOOT_BONUS_MOBS, 55, true);
+        meta.addEnchant(Enchantment.SWEEPING_EDGE, 10, true);
+
+        Multimap<Attribute, AttributeModifier> attributeMap = ArrayListMultimap.create();
+        attributeMap.put(Attribute.GENERIC_MOVEMENT_SPEED,
+                new AttributeModifier(UUID.randomUUID(), "移动速度", 0.1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        attributeMap.put(Attribute.GENERIC_ATTACK_DAMAGE,
+                new AttributeModifier(UUID.randomUUID(), "攻击伤害", 70047, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        attributeMap.put(Attribute.GENERIC_ARMOR,
+                new AttributeModifier(UUID.randomUUID(), "易伤", -20, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        attributeMap.put(Attribute.GENERIC_MAX_HEALTH,
+                new AttributeModifier(UUID.randomUUID(), "生命上限", -50, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        attributeMap.put(Attribute.GENERIC_ATTACK_SPEED,
+                new AttributeModifier(UUID.randomUUID(), "攻击速度", -3.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        attributeMap.put(Attribute.GENERIC_MAX_HEALTH,
+                new AttributeModifier(UUID.randomUUID(), "生命上限", 30, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.OFF_HAND));
+        attributeMap.put(Attribute.GENERIC_KNOCKBACK_RESISTANCE,
+                new AttributeModifier(UUID.randomUUID(), "击退抗性", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.OFF_HAND));
+        meta.setAttributeModifiers(attributeMap);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        this.getItem().setItemMeta(meta);
+
+    }
+    static SlimefunItemStack stack = new SlimefunItemStack("MYTHIC_SWORD", Material.WOODEN_SWORD, "&7&l无", "&5为救天下而铸之剑","","&0为了谎言而铸之剑");
     static ItemStack[] recipe = {
             null, null, null,
             null, null, null,
             null, null, null,
     };
-    static mythicSword sword = new mythicSword(groups.lft, stack, RecipeType.NULL, recipe);
+    static mythicSword sword = new mythicSword(groups.mt_weapon, stack, RecipeType.NULL, recipe);
 }
