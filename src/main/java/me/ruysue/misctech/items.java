@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.*;
+import java.util.UUID;
 
 
 public class items {
@@ -44,10 +44,11 @@ class InfExpBook extends SlimefunItem {
         addItemHandler((ItemUseHandler) this::onItemUse);
     }
     private void onItemUse(PlayerRightClickEvent event){
-        event.getPlayer().giveExpLevels(1);
+        event.getPlayer().giveExpLevels(3);
         event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
         event.cancel();
     }
+
     static SlimefunItemStack stack =
             new SlimefunItemStack("INF_EXP_BOOK",Material.WRITTEN_BOOK, "&b&l无尽知识之书", "每次阅读都能获得新体验");
     static ItemStack[] recipe = {
@@ -111,12 +112,13 @@ class mythicSword extends SlimefunItem{
         attributeMap.put(Attribute.GENERIC_KNOCKBACK_RESISTANCE,
                 new AttributeModifier(UUID.randomUUID(), "击退抗性", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.OFF_HAND));
         meta.setAttributeModifiers(attributeMap);
+
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        this.getItem().setItemMeta(meta);
 
+        this.getItem().setItemMeta(meta);
     }
-    static SlimefunItemStack stack = new SlimefunItemStack("MYTHIC_SWORD", Material.WOODEN_SWORD, "&7&l无", "&5为救天下而铸之剑","","&0为了谎言而铸之剑");
+    static SlimefunItemStack stack = new SlimefunItemStack("MYTHIC_SWORD", Material.WOODEN_SWORD, "&7&l无", "&5为救天下而铸","","&0为了谎言而铸");
     static ItemStack[] recipe = {
             null, null, null,
             null, null, null,
