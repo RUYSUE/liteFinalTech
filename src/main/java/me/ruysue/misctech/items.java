@@ -7,15 +7,18 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.RandomMobDrop;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemConsumptionHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -59,7 +62,7 @@ class InfExpBook extends SlimefunItem {
     static InfExpBook ieb = new InfExpBook(groups.mt_misc, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 }
 
-class RottenFlesh extends SlimefunItem{
+class RottenFlesh extends SlimefunItem implements RandomMobDrop {
     public RottenFlesh(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
@@ -72,13 +75,16 @@ class RottenFlesh extends SlimefunItem{
         player.giveExpLevels(5);
         player.removePotionEffect(PotionEffectType.HUNGER);
     }
+    EntityType mob = EntityType.ZOMBIE;
+    @Override
+    public int getMobDropChance(){
+        return 100;
+    }
     static SlimefunItemStack stack = new SlimefunItemStack("ROTTEN_FLESH", Material.ROTTEN_FLESH, "&b&l烧焦的腐肉", "你真的要吃？");
     static ItemStack[] recipe = {
-            null,new ItemStack(Material.FIRE_CHARGE),   null,
-            null,new ItemStack(Material.ROTTEN_FLESH),  null,
-            null,new ItemStack(Material.FIRE_CHARGE),   null,
+            null,null, null, null, new CustomItemStack(Material.ZOMBIE_SPAWN_EGG, "wtf", "?"),
     };
-    static RottenFlesh flesh = new RottenFlesh(groups.mt_misc, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+    static RottenFlesh flesh = new RottenFlesh(groups.mt_misc, stack, RecipeType.MOB_DROP, recipe);
 }
 
 class mythicSword extends SlimefunItem{
@@ -126,3 +132,5 @@ class mythicSword extends SlimefunItem{
     };
     static mythicSword sword = new mythicSword(groups.mt_weapon, stack, RecipeType.NULL, recipe);
 }
+
+//https://github.com/SlimefunGuguProject/SlimeCustomizer.git

@@ -39,7 +39,7 @@ class machine extends AContainer{
     public void registerDefaultRecipes(){
         this.registerRecipe(1, new ItemStack(Material.DIAMOND), new ItemStack(Material.DIAMOND, 5));
     }
-    static SlimefunItemStack stack = new SlimefunItemStack("MACHINE_D", Material.BEDROCK, "&7&l无", "&5为救天下而铸");
+    static SlimefunItemStack stack = new SlimefunItemStack("MACHINE_D", Material.BEDROCK, "&7&l实例机器");
     static ItemStack[] recipe = {new ItemStack(Material.DIAMOND_SWORD),null,null,new ItemStack(Material.DIAMOND_SWORD),null,null,new ItemStack(Material.DIAMOND_SWORD),null,null};
     static machine dm = new machine(groups.mt_machine, stack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 }
