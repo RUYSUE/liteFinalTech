@@ -18,7 +18,6 @@ import org.bukkit.SoundCategory;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -75,14 +74,11 @@ class RottenFlesh extends SlimefunItem implements RandomMobDrop {
         player.giveExpLevels(5);
         player.removePotionEffect(PotionEffectType.HUNGER);
     }
-    EntityType mob = EntityType.ZOMBIE;
     @Override
-    public int getMobDropChance(){
-        return 100;
-    }
+    public int getMobDropChance(){return 100;}
     static SlimefunItemStack stack = new SlimefunItemStack("ROTTEN_FLESH", Material.ROTTEN_FLESH, "&b&l烧焦的腐肉", "你真的要吃？");
     static ItemStack[] recipe = {
-            null,null, null, null, new CustomItemStack(Material.ZOMBIE_SPAWN_EGG, "wtf", "?"),
+            null, null, null, null, new CustomItemStack(Material.ZOMBIE_SPAWN_EGG,"&bZOMBIE"),//抽象，居然是以名字来判断
     };
     static RottenFlesh flesh = new RottenFlesh(groups.mt_misc, stack, RecipeType.MOB_DROP, recipe);
 }
