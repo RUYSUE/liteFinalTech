@@ -132,5 +132,3 @@ class mythicSword extends SlimefunItem{
     };
     static mythicSword sword = new mythicSword(groups.mt_weapon, stack, RecipeType.NULL, recipe);
 }
-
-//https://github.com/SlimefunGuguProject/SlimeCustomizer.git
